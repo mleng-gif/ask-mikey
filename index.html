@@ -786,7 +786,7 @@ const LOGO=new Image(); let logoW=90; const LOGO_AR=1575/1704;
 (function(){ const sv=document.querySelector('.logo svg'); if(!sv) return; const c=sv.cloneNode(true); c.removeAttribute('class'); c.querySelector('path').setAttribute('fill','#f3e6cf');
   LOGO.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(new XMLSerializer().serializeToString(c)); })();
 const LOGO_INK=new Image();
-(function(){ const sv=document.querySelector('.logo svg'); if(!sv) return; const c=sv.cloneNode(true); c.removeAttribute('class'); c.querySelector('path').setAttribute('fill','#3a1206');
+(function(){ const sv=document.querySelector('.logo svg'); if(!sv) return; const c=sv.cloneNode(true); c.removeAttribute('class'); c.querySelector('path').setAttribute('fill','#ffffff');
   LOGO_INK.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(new XMLSerializer().serializeToString(c)); })();
 const order=nodes.map((_,i)=>i), MONO='"IBM Plex Mono",monospace', SERIF=MONO;
 const LS=v=>{ if('letterSpacing' in ctx) ctx.letterSpacing=v; };
@@ -853,7 +853,7 @@ function frame(now){
   const rim=ctx.createRadialGradient(C.sx,C.sy,R*.82,C.sx,C.sy,R*1.04);
   rim.addColorStop(0,'rgba(255,220,180,0)'); rim.addColorStop(.85,'rgba(255,220,180,.35)'); rim.addColorStop(1,'rgba(255,220,180,0)');
   ctx.fillStyle=rim; ctx.beginPath(); ctx.arc(C.sx,C.sy,R*1.04,0,7); ctx.fill();
-  if(LOGO_INK.complete&&LOGO_INK.naturalWidth){ ctx.save(); ctx.globalAlpha=.78; ctx.drawImage(LOGO_INK,C.sx-lw/2,C.sy-lh/2,lw,lh); ctx.restore(); }
+  if(LOGO_INK.complete&&LOGO_INK.naturalWidth){ ctx.save(); ctx.globalAlpha=1; ctx.shadowColor='rgba(90,25,8,.6)'; ctx.shadowBlur=3; ctx.drawImage(LOGO_INK,C.sx-lw/2,C.sy-lh/2,lw,lh); ctx.restore(); }
   for(const f of FACETS){ const n=nodes[f.hub], on=!L&&f.id===hl, rad=Math.max(3,n.r*n.s*1.25);
     ctx.globalAlpha=on?1:Math.max(.3,n.a)*(L?.5:1); ctx.strokeStyle=on?'#FF6B35':'rgba(232,226,212,.7)'; ctx.lineWidth=1;
     ctx.beginPath(); ctx.arc(n.sx,n.sy,rad+3,0,7); ctx.stroke(); ctx.fillStyle=on?'#FF6B35':'#e8e2d4'; ctx.beginPath(); ctx.arc(n.sx,n.sy,1.8,0,7); ctx.fill(); }
