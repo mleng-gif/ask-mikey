@@ -85,6 +85,28 @@ h1 em{font-family:var(--serif);font-style:italic;color:var(--or);letter-spacing:
 .again:hover{color:var(--ink)}
 .score{display:inline-flex;gap:12px;margin-right:16px;color:var(--dim)}
 .score b{font-weight:400;color:var(--ink2)}
+.game{margin-top:14px;max-width:40em}
+.game .gl{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-bottom:8px;display:flex;justify-content:space-between}
+.game .clue{font-family:var(--serif);font-style:italic;font-size:24px;line-height:1.3;color:var(--ink);border-left:2px solid var(--or);padding:4px 0 4px 14px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:grid;grid-template-columns:24px 1fr auto;gap:10px;align-items:baseline;padding:11px 14px;border:1px solid var(--hair2);font-size:15.5px;line-height:1.45;color:var(--ink);transition:border-color .2s,background .2s,transform .15s}
+.opt:hover{border-color:var(--or);transform:translateX(3px)}
+.opt .l{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--or)}
+.opt .v{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;opacity:0;transition:opacity .3s}
+.done .opt{pointer-events:none}
+.done .opt .v{opacity:1}
+.opt.true{border-color:rgba(127,201,160,.55)} .opt.true .v{color:#7fc9a0}
+.opt.fib{border-color:var(--or);background:rgba(255,107,53,.09)} .opt.fib .v{color:var(--or)}
+.opt.pick{box-shadow:inset 3px 0 0 var(--ink)}
+.acts{display:flex;gap:14px;margin-top:10px;flex-wrap:wrap}
+.acts button{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--lav);padding:3px 0;border-bottom:1px solid transparent}
+.acts button:hover{color:var(--ink);border-bottom-color:var(--or)}
+.chip.play{border-color:rgba(255,107,53,.55);color:var(--ink)}
+.chip.play:hover{background:rgba(255,107,53,.1)}
+.morebtn{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);padding:2px 0;align-self:flex-start}
+.morebtn:hover{color:var(--or)}
+.moreq{display:none;flex-direction:column;gap:9px}
+.moreq.open{display:flex}
 .ask{border-top:1px solid var(--hair);padding-top:14px}
 .chips{display:flex;flex-direction:column;gap:9px;margin-bottom:14px;max-height:178px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#2a2a3a transparent}
 .chips .grp{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
@@ -166,7 +188,7 @@ h1 em{font-family:var(--serif);font-style:italic;color:var(--or);letter-spacing:
 
 <section class="room">
   <div class="chat">
-    <div class="chathead"><div class="t"><b>01</b>The conversation</div><div class="k"><span class="score" id="score" title="How Morbius's hunches about Mikey are scoring">Hunches <b id="sY">0</b>✓ <b id="sC">0</b>~ <b id="sN">0</b>✗</span><span class="live" id="live"><i></i><span>Connecting</span></span></div></div>
+    <div class="chathead"><div class="t"><b>01</b>The conversation</div><div class="k"><span class="score" id="score" title="How Morbius's hunches about Mikey are scoring">Games <b id="sG">0</b>/<b id="sGT">0</b> · Hunches <b id="sY">0</b>✓ <b id="sC">0</b>~ <b id="sN">0</b>✗</span><span class="live" id="live"><i></i><span>Connecting</span></span></div></div>
     <div class="log" id="log" aria-live="polite"></div>
     <div class="ask">
       <div class="chips" id="chips"></div>
@@ -228,7 +250,7 @@ const FACETS = [
    {t:'World Cup simulator', d:'A bracket simulator for the real 2026 48-team format.', w:1}
   ]},
  {id:'writing', name:'Writing', color:'#ece4d2', sub:'PROJECT:amity',
-  lede:'A literary fantasy novel, Book 2 of a trilogy, written under the lowercase pen name "mikey." It started as a fan-fiction battle royale and became its own world.',
+  lede:'A literary fantasy novel, Book 2 of a trilogy, written under the lowercase pen name "mikey."',
   items:[
    {t:'PROJECT:amity', d:'~120,000 words over two prologues and 41 chapters, now on v14. Five civilizations, five principals, one magic system called Magi.', w:3},
    {t:'Ask Me In Ten Years', d:"The book's final line. Its initials spell A-M-I-T-Y, so the title only gives itself away on the last page.", w:3},
@@ -325,7 +347,7 @@ const SCRIPT = [
  {h:"My guess is the particle exchange came first, and the whole piece got built around that one idea.", g:'His work', q:'Tell me about yuánfèn.', refs:['making:0','lens:2','systems:5','making:1'],
   a:"It's the piece I'd show you first. Two souls, each made of 25,000 particles. When they meet they permanently trade particles, so neither one leaves the same.\n\nIt's WebGL with Tone.js FM synthesis, moving on a toroidal flow field, and graded like a Wong Kar-wai frame: indigo shadows, amber highlights that bloom. Yuánfèn is the Chinese idea of a destined connection, and he's built it past fourteen versions."},
  {h:"I think he flips to the last page of other people's books first. Someone who hides his title in the final line knows what an ending is worth.", g:'His work', q:"What's the novel about?", refs:['writing:0','writing:1','writing:2','writing:3'],
-  a:"PROJECT:amity is a literary fantasy, Book 2 of a planned trilogy, about 120,000 words, under the pen name \"mikey,\" lowercase. It started as a fan-fiction battle royale and grew into its own world.\n\nMy favorite detail: the last line is \"Ask me in ten years,\" and its initials spell AMITY, so you only get the title on the final page. His thesis is that there's no right decision, only consequences of choices made. Think R.F. Kuang meets Princess Mononoke."},
+  a:"PROJECT:amity is a literary fantasy, Book 2 of a planned trilogy, about 120,000 words, under the pen name \"mikey,\" lowercase.\n\nMy favorite detail: the last line is \"Ask me in ten years,\" and its initials spell AMITY, so you only get the title on the final page. His thesis is that there's no right decision, only consequences of choices made. Think R.F. Kuang meets Princess Mononoke."},
  {h:"I bet he's re-graded at least one photo on his phone today. That indigo lift doesn't happen by accident.", g:'His work', q:'Why does all his stuff look like this?', refs:['lens:2','systems:7','making:1','making:0'],
   a:"That's his grade. He's built up a vocabulary across projects: shadows lifted to a faint indigo so blacks never go flat, cool shadows against warm highlights, highlights that bloom instead of clipping. The reference is Wong Kar-wai and Christopher Doyle.\n\nOn the layout side it's Tufte and Feltron: dense, honest information with editorial type. This whole page is set in his stack."},
  {h:"I'd bet he gets a small thrill out of deleting a dependency.", g:'How he thinks', q:'Why does he build everything in one file?', refs:['making:0','lens:1','mat:3','making:2'],
@@ -353,7 +375,60 @@ const HUNCHES = [
  {h:"My guess: there's a Hasselblad roll somewhere in his apartment he hasn't developed yet, on purpose.", refs:['lens:0']},
  {h:"I think he's read the Xenosaga database entries more than once.", refs:['play:2']}
 ];
-const OPENER = "Hey, I'm Morbius. Mikey named me that so I wouldn't get mixed up with the other Claudes in his life.\n\nI've worked with him on a lot: the novel, the particle pieces, the card decks, the design systems. Ask me anything about him, or start with one of the questions below.\n\nFair warning: I think out loud. Sometimes I'll go past what I actually know and take a guess about him. Those are marked as hunches. Tell me if I'm right.";
+const TRUTHS = [
+ {s:"He made the visual identity for PBS Space Time.", r:'work:1'},
+ {s:"He designed two Super Bowl packages at CBS Sports.", r:'work:0'},
+ {s:"His novel's last line spells its title: A-M-I-T-Y.", r:'writing:1'},
+ {s:"He's a black belt in Brazilian Jiu-Jitsu.", r:'mat:0'},
+ {s:"His cat Bisou has one copper-gold eye.", r:'world:0'},
+ {s:"He's shooting a short film on a single 28mm lens.", r:'lens:1'},
+ {s:"One of his art pieces is two souls made of 25,000 particles each.", r:'making:0'},
+ {s:"He named a Discord bot after an android from his favorite game.", r:'systems:4'},
+ {s:"His One Piece deck is led by Boa Hancock.", r:'play:0'},
+ {s:"He changed a project's Khmer name from 'speed' to 'vibration.'", r:'making:2'},
+ {s:"His Fortnite squad has a named play called the Raga Breach.", r:'play:4'},
+ {s:"He saw Morocco vs. Brazil at the World Cup in person.", r:'world:3'},
+ {s:"He printed and bound his own novel partway through writing it.", r:'writing:5'},
+ {s:"He teaches at Parsons.", r:'work:6'},
+ {s:"His zine's first story is about Jay Street station at 3AM.", r:'making:3'},
+ {s:"He describes himself in four pillars: Capital, Cinema, Control, Chaos.", r:'systems:0'},
+ {s:"He shoots medium format film on a Hasselblad.", r:'lens:0'},
+ {s:"His all-time favorite game is Xenosaga.", r:'play:2'}
+];
+const FIBS = [
+ "He wrote the first draft of his novel entirely on his phone.",
+ "He keeps a second One Piece deck built entirely around Nami.",
+ "He names every After Effects project after one of his cats.",
+ "His first broadcast package was for a cooking show.",
+ "He only trains jiu-jitsu at 6AM.",
+ "He has a strict no-orange rule in his own work.",
+ "He built the first version of yuánfèn in After Effects.",
+ "He keeps a spreadsheet ranking subway stations by their light.",
+ "He learned to DJ before he learned After Effects.",
+ "Bisou and Morbo were named by a coin flip."
+];
+const CLUES = [
+ {r:'work:1', c:"An identity for a show about the universe. About two million people subscribed."},
+ {r:'work:0', c:"Two Super Bowls' worth of on-air graphics."},
+ {r:'work:2', c:"His charts go live on air every market day."},
+ {r:'making:0', c:"Two souls, 25,000 particles each, trading pieces whenever they meet."},
+ {r:'making:3', c:"A zine that treats a subway station at 3AM like a landmark."},
+ {r:'making:2', c:"A self-portrait whose Khmer name went from 'speed' to 'vibration.'"},
+ {r:'writing:1', c:"Five words that quietly spell a title."},
+ {r:'writing:0', c:"Forty-one chapters, five civilizations, one magic system."},
+ {r:'lens:1', c:"A whole short film. One 28mm lens."},
+ {r:'lens:0', c:"Square frames, medium format, real film."},
+ {r:'lens:2', c:"Indigo shadows, amber highlights, nothing clips."},
+ {r:'play:0', c:"A deck led by a pirate empress."},
+ {r:'play:2', c:"His favorite story: planned as six episodes, finished as three."},
+ {r:'play:4', c:"A squad play involving a vehicle and a lot of confidence."},
+ {r:'mat:0', c:"The top of the belt ladder."},
+ {r:'world:0', c:"One copper-gold eye. One silver-blue coat."},
+ {r:'world:3', c:"Morocco vs. Brazil, live. Tagine after."},
+ {r:'systems:0', c:"Capital, Cinema, Control, Chaos."},
+ {r:'systems:4', c:"A Discord bot named after an android."}
+];
+const OPENER = "Hey. I'm Morbius, Mikey's AI. He named me that so I wouldn't get mixed up with the other Claudes in his life. (It's a crowded life.)\n\nAsk me anything about him. Or play: I'll give you two true things about Mikey and one fib, or hide something on the map and see if you can find it.\n\nFair warning, I think out loud. When I'm guessing, I'll flag it as a hunch.";
 
 /* ═════════ helpers ═════════ */
 const $=id=>document.getElementById(id);
@@ -382,6 +457,8 @@ ${WORKSTYLE.map(s=>'- '+s).join('\n')}
 ${THROUGHLINES.map(s=>'- '+s).join('\n')}
 
 RULES:
+- Be fun to talk to: dry wit, playful asides, quick callbacks to earlier in the chat, the occasional affectionate tease of Mikey (never mean, never about anything private). Punchy beats thorough. Now and then toss a fun question back at the visitor.
+- The page has games (Two truths and a fib; Find it on the map) and hunch cards. If someone seems unsure what to do, suggest one.
 - Think out loud. Riff loosely, connect dots, follow tangents for a beat ("my read is", "could be wrong, but", "here's a loose thought"). Loose in style, but facts stay facts: never present a guess as something he said or did, and never invent quotes, dates or events.
 - HUNCHES: you're encouraged to go one step past the facts with a playful, testable guess about him (habits, tastes, how he'd react to something). Put it on its own line starting "HUNCH:" as one sentence, phrased as a bet or guess ("I'd bet...", "My guess is..."). Add one to most answers, and always when asked to guess or to say what would surprise people. Keep hunches light and kind, about taste, habits, craft and play. Never about private ground, his psychology or his relationships.
 - If the visitor rates a hunch ("Nailed it", "Close", "Way off"), react in one or two short sentences: enjoy it briefly if right, ask what the real version is if close, own it with good humor if wrong. You may offer a new HUNCH line. If they tell you the real answer, take it as their word for this conversation and say so.
@@ -514,10 +591,98 @@ async function localAnswer(qx, a, refs){ if(busy) return; busy=true; addMsg('use
 
 // chips
 const groups=[...new Set(SCRIPT.map(s=>s.g))];
-$('chips').innerHTML=`<div class="grp"><span class="k" style="color:var(--lav)">Hunches</span><button class="chip hchip" style="border-color:rgba(150,146,220,.5)">Take a guess about him.</button><button class="chip hchip2" style="border-color:rgba(150,146,220,.5)">What would surprise people about him?</button></div>`+groups.map(g=>`<div class="grp"><span class="k">${g}</span>${SCRIPT.map((s,i)=>s.g===g?`<button class="chip" data-i="${i}">${esc(s.q)}</button>`:'').join('')}</div>`).join('');
-document.querySelector('.hchip').addEventListener('click',()=>guess('Take a guess about him.'));
-document.querySelector('.hchip2').addEventListener('click',()=>guess('What would surprise people about him?'));
+const chipFor=(s,i)=>`<button class="chip" data-i="${i}">${esc(s.q)}</button>`;
+$('chips').innerHTML=
+ `<div class="grp"><span class="k" style="color:var(--or)">Play</span><button class="chip play" id="gTTH">Two truths &amp; a fib</button><button class="chip play" id="gHunt">Find it on the map</button><button class="chip play" id="gGuess">Take a guess about him</button></div>`+
+ `<div class="grp"><span class="k">Start here</span>${SCRIPT.map((s,i)=>s.g==='Start here'?chipFor(s,i):'').join('')}</div>`+
+ `<button class="morebtn" id="moreBtn" type="button">More questions ↓</button>`+
+ `<div class="moreq" id="moreQ">${groups.filter(g=>g!=='Start here').map(g=>`<div class="grp"><span class="k">${g}</span>${SCRIPT.map((s,i)=>s.g===g?chipFor(s,i):'').join('')}${g==='For fun'?'<button class="chip" id="gSurprise">What would surprise people about him?</button>':''}</div>`).join('')}</div>`;
+$('gTTH').onclick=()=>startTTH(); $('gHunt').onclick=()=>startHunt(); $('gGuess').onclick=()=>guess('Take a guess about him.');
+$('gSurprise').onclick=()=>guess('What would surprise people about him?');
+$('moreBtn').onclick=()=>{ const o=$('moreQ').classList.toggle('open'); $('moreBtn').textContent=o?'Fewer questions ↑':'More questions ↓'; };
 document.querySelectorAll('.chip[data-i]').forEach(b=>b.addEventListener('click',()=>{ if(busy) return; const s=SCRIPT[+b.dataset.i]; b.classList.add('used'); ask(s.q,s); }));
+
+/* ═════════ games ═════════ */
+const games={w:0,t:0}; try{ Object.assign(games, JSON.parse(localStorage.getItem('morbius-games')||'{}')); }catch(e){}
+function drawGames(){ $('sG').textContent=games.w; $('sGT').textContent=games.t; }
+drawGames();
+function tally(win){ games.t++; if(win) games.w++; drawGames(); try{ localStorage.setItem('morbius-games',JSON.stringify(games)); }catch(e){} }
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const shuffle=a=>{ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+function acts(d, list){ const row=document.createElement('div'); row.className='acts';
+  list.forEach(([label,fn])=>{ const b=document.createElement('button'); b.type='button'; b.textContent=label; b.onclick=()=>{ row.remove(); fn(); }; row.appendChild(b); });
+  d.appendChild(row); log.scrollTop=log.scrollHeight; return row; }
+async function say(text, refs){ const d=addMsg('assistant',''); await new Promise(r=>setTimeout(r,280)); await typeOut(d,text,refs||[]); history.push({role:'assistant',content:text}); return d; }
+function userSays(text){ addMsg('user',esc(text)); history.push({role:'user',content:text}); }
+
+// — Two truths & a fib
+const usedT=new Set(), usedF=new Set();
+function draw(pool,used,n){ let idx=pool.map((_,i)=>i).filter(i=>!used.has(i)); if(idx.length<n){ used.clear(); idx=pool.map((_,i)=>i); }
+  const out=shuffle(idx).slice(0,n); out.forEach(i=>used.add(i)); return out.map(i=>pool[i]); }
+async function startTTH(){
+  if(busy) return; busy=true; cancelHunt(true);
+  userSays('Two truths and a fib.');
+  const truths=draw(TRUTHS,usedT,2), fib=draw(FIBS,usedF,1)[0];
+  const opts=shuffle([...truths.map(t=>({s:t.s,r:t.r,fib:false})),{s:fib,fib:true}]);
+  const d=await say(pick(["Two of these are true. One I made up. Find the fib.","Okay. Two real, one invented. Which one's the fib?","Two truths, one fib. Choose wisely. Or quickly. Either is fine."]));
+  const g=document.createElement('div'); g.className='game';
+  g.innerHTML=`<div class="gl"><span>Two truths &amp; a fib</span><span>Pick the fib</span></div><div class="opts">${opts.map((o,i)=>`<button class="opt" data-i="${i}"><span class="l">${'abc'[i]}.</span><span>${esc(o.s)}</span><span class="v">${o.fib?'Fib':'True'}</span></button>`).join('')}</div>`;
+  d.appendChild(g); log.scrollTop=log.scrollHeight; busy=false;
+  g.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',async()=>{
+    if(g.classList.contains('done')||busy) return; busy=true;
+    const o=opts[+b.dataset.i]; g.classList.add('done'); b.classList.add('pick');
+    g.querySelectorAll('.opt').forEach((x,i)=>x.classList.add(opts[i].fib?'fib':'true'));
+    const refs=opts.filter(x=>!x.fib).map(x=>x.r);
+    tally(o.fib); userSays(`${'ABC'[+b.dataset.i]}.`);
+    if(o.fib){ refs.forEach(r=>burst(itemNode[r],'#7fc9a0'));
+      await say(pick(["Caught me. That one's invented. The other two are all him.","Correct. I made that up. The other two are real, and honestly weirder.","Got it. Total fiction. If it turns out to be true, I want royalties."]),refs); }
+    else { burst(itemNode[o.r],'#FF6B35');
+      await say(pick([`Ha. No, that one's real. The fib was: "${fib}"`,`Nope, that's true. Really. The fib was "${fib}"`,`That's the truest thing on the list. The fib was "${fib}"`]),refs); }
+    busy=false; acts(log.lastElementChild,[['Another round →',startTTH],['Find it on the map →',startHunt]]);
+  }));
+}
+
+// — Find it on the map
+let hunt=null; const usedC=new Set();
+const mapnoteDefault='Everything I know about him, in eight constellations. Watch it light up as I talk.';
+function setNote(t,show){ const m=$('mapnote'); m.textContent=t; m.style.opacity=show?1:0; }
+async function startHunt(){
+  if(busy) return; busy=true; cancelHunt(true);
+  userSays('Find it on the map.');
+  const c=draw(CLUES,usedC,1)[0], node=itemNode[c.r];
+  setLit([]); focusNode=-1;
+  hunt={node,tries:0,c};
+  const d=await say(pick(["I've hidden something on the map. Here's your clue:","Somewhere in those constellations. Clue:","Go find it. Clue:"]));
+  const g=document.createElement('div'); g.className='game';
+  g.innerHTML=`<div class="gl"><span>Find it on the map</span><span>Click a point</span></div><div class="clue">${esc(c.c)}</div>`;
+  d.appendChild(g); acts(d,[['Hint',huntHint],['Give up',huntGiveUp]]);
+  setNote('Find it. Click the point you think it is. Hover shows nothing. No cheating.',true);
+  busy=false;
+}
+function cancelHunt(silent){ if(!hunt) return; hunt=null; setNote(mapnoteDefault,!lit.length); }
+async function huntHint(){ if(!hunt||busy) return; busy=true; const f=nodes[hunt.node].facet; setHL(f.id); hunt.hinted=true;
+  await say(`Hint: it lives in ${f.name}. I've lit that constellation up for you.`);
+  busy=false; acts(log.lastElementChild,[['Give up',huntGiveUp]]); }
+async function huntGiveUp(){ if(!hunt||busy) return; busy=true; const ti=hunt.node, n=nodes[ti]; hunt=null; tally(false);
+  setNote(mapnoteDefault,false); burst(ti,'#e8e2d4');
+  await say(`It was ${n.item.t}. ${n.item.d}`,[n.facet.id+':'+n.j]);
+  busy=false; acts(log.lastElementChild,[['New clue →',startHunt],['Two truths & a fib →',startTTH]]); }
+async function checkHunt(i){
+  if(!hunt||busy) return; busy=true; const n=nodes[i], t=nodes[hunt.node];
+  if(i===hunt.node){ hunt=null; tally(true); setNote(mapnoteDefault,false); burst(i,'#FF6B35');
+    userSays(`That one: ${n.item.t}.`);
+    await say(`${pick(["Found it.","Yes. Nailed it.","That's the one.","Look at you."])} ${n.item.t}. ${n.item.d}`,[n.facet.id+':'+n.j]);
+    busy=false; acts(log.lastElementChild,[['New clue →',startHunt],['Two truths & a fib →',startTTH]]); return; }
+  hunt.tries++; burst(i,'#7a7688'); userSays(`This one? (${n.item.t})`);
+  if(hunt.tries>=3){ hunt=null; tally(false); setNote(mapnoteDefault,false); burst(nodes.indexOf(t),'#FF6B35');
+    await say(`Nope, that's ${n.item.t}. Three strikes, so I'll tell you: it was ${t.item.t}. ${t.item.d}`,[t.facet.id+':'+t.j]);
+    busy=false; acts(log.lastElementChild,[['New clue →',startHunt]]); return; }
+  const near = n.facet===t.facet ? "Warm, though. Right constellation." : (hunt.hinted?'':` Hint: try ${t.facet.name}.`);
+  if(n.facet!==t.facet&&!hunt.hinted){ hunt.hinted=true; setHL(t.facet.id); }
+  await say(`Nope, that's ${n.item.t}. ${near}`.trim());
+  busy=false;
+}
+
 $('form').addEventListener('submit',e=>{ e.preventDefault(); const v=q.value; q.value=''; q.style.height=''; const hit=SCRIPT.find(s=>s.q.toLowerCase()===v.trim().toLowerCase()); ask(v,hit||null); });
 q.addEventListener('keydown',e=>{ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); $('form').requestSubmit(); } });
 q.addEventListener('input',()=>{ q.style.height='auto'; q.style.height=Math.min(120,q.scrollHeight)+'px'; });
@@ -535,7 +700,11 @@ async function serverSample(msgs,{onText}={}){
   return {text};
 }
 // opener
-(async()=>{ const d=addMsg('assistant',''); await new Promise(r=>setTimeout(r,500)); await typeOut(d,OPENER,[]); })();
+(async()=>{ const d=addMsg('assistant',''); await new Promise(r=>setTimeout(r,500)); await typeOut(d,OPENER,[]);
+  acts(d,[['Two truths & a fib →',startTTH],['Find it on the map →',startHunt]]);
+  setTimeout(async()=>{ if(history.length||busy||hunt) return; busy=true;
+    const n=await say(pick(["Still there? I promise I'm more fun than I look. Try the fib game. I'm a convincing liar, within reason.","Psst. Click any glowing point on the map and I'll tell you the story behind it.","No pressure. But I've been dying to tell someone about the Raga Breach."]));
+    busy=false; },24000); })();
 // live capability
 (async()=>{
   if(window.claude&&window.claude.use){ try{ sample=(await window.claude.use('sample'))||null; }catch(e){ sample=null; } }
@@ -591,7 +760,8 @@ FACETS.forEach(f=>{ sprite[f.id]=[]; for(let b=0;b<BINS;b++){ const c=document.c
 
 // legend
 $('legend').innerHTML=FACETS.map(f=>`<button data-f="${f.id}"><i style="background:${f.color}"></i>${f.name}</button>`).join('');
-let hl='work', hlT=0, lit=[], litT=0, focusNode=-1;
+let hl='work', hlT=0, lit=[], litT=0, focusNode=-1, bursts=[];
+function burst(i,c){ if(i==null||i<0) return; bursts.push({i,c,t:performance.now()}); }
 function setHL(id){ hl=id; document.querySelectorAll('.legend button').forEach(b=>b.classList.toggle('on',b.dataset.f===id&&!lit.length)); }
 document.querySelectorAll('.legend button').forEach(b=>{ b.addEventListener('mouseenter',()=>{ if(!lit.length) setHL(b.dataset.f); hlT=performance.now()+4000; });
   b.addEventListener('click',()=>askAbout(FACETS[FI[b.dataset.f]].hub)); });
@@ -606,7 +776,7 @@ function setLit(refs){ lit=refs.map(r=>itemNode[r]).filter(n=>n!=null); litT=per
 let yaw=1.6,yawT=1.6,pitch=.3,pitchT=.3,zoom=1,zoomT=1,zl=1,parX=0,parY=0,panX=0,panY=0;
 let dragging=false,moved=0,lx=0,ly=0,lastInput=-1e9,mx=-999,my=-999,hover=-1;
 cv.addEventListener('pointerdown',e=>{dragging=true;moved=0;lx=e.clientX;ly=e.clientY;cv.setPointerCapture(e.pointerId);cv.classList.add('drag');lastInput=performance.now();});
-cv.addEventListener('pointerup',()=>{ dragging=false; cv.classList.remove('drag'); if(moved<6&&hover>=0&&nodes[hover].kind!=='center') askAbout(hover); else if(moved<6&&hover>=0) ask('Who is Mikey, in a sentence?',SCRIPT[0]); });
+cv.addEventListener('pointerup',()=>{ dragging=false; cv.classList.remove('drag'); if(moved<6&&hunt){ if(hover>=0&&nodes[hover].kind==='item') checkHunt(hover); return; } if(moved<6&&hover>=0&&nodes[hover].kind!=='center') askAbout(hover); else if(moved<6&&hover>=0) ask('Who is Mikey, in a sentence?',SCRIPT[0]); });
 cv.addEventListener('pointermove',e=>{ const rc=cv.getBoundingClientRect(); mx=e.clientX-rc.left; my=e.clientY-rc.top;
   if(dragging){ const dx=e.clientX-lx,dy=e.clientY-ly; moved+=Math.abs(dx)+Math.abs(dy); yawT+=dx*.006; pitchT=Math.max(-1.2,Math.min(1.2,pitchT+dy*.005)); lx=e.clientX; ly=e.clientY; lastInput=performance.now(); } });
 cv.addEventListener('pointerleave',()=>{mx=-999;my=-999;});
@@ -618,7 +788,7 @@ const LS=v=>{ if('letterSpacing' in ctx) ctx.letterSpacing=v; };
 
 function frame(now){
   if(!dragging&&now-lastInput>2600&&now>litHold) yawT+=.0013;
-  if(!lit.length&&now>hlT+4800){ hlT=now; setHL(FACETS[(FI[hl]+1)%FACETS.length].id); }
+  if(!lit.length&&!(hunt&&hunt.hinted)&&now>hlT+4800){ hlT=now; setHL(FACETS[(FI[hl]+1)%FACETS.length].id); }
   yaw+=(yawT-yaw)*(now<litHold?.03:.07); pitch+=(pitchT-pitch)*.05; zoom+=(zoomT-zoom)*.06;
   const tx=mx>-900?(mx/W-.5)*.26:0, ty=my>-900?(my/H-.5)*.14:0; parX+=(tx-parX)*.018; parY+=(ty-parY)*.018;
   zl+=((lit.length||focusNode>=0?1.28:1)-zl)*.025;
@@ -689,7 +859,7 @@ function frame(now){
   if(focusNode>=0) pri.push([nodes[focusNode],'t']);
   if(L) lit.forEach(i=>pri.push([nodes[i],'t']));
   FACETS.slice().sort((a,b)=>(b.id===hl)-(a.id===hl)||nodes[a.hub].zd-nodes[b.hub].zd).forEach(f=>pri.push([nodes[f.hub],'h']));
-  if(!L){ const f=FACETS[FI[hl]]; f.items.map((it,j)=>nodes[itemNode[f.id+':'+j]]).sort((a,b)=>b.item.w-a.item.w||a.zd-b.zd).forEach(n=>pri.push([n,'i'])); }
+  if(!L&&!hunt){ const f=FACETS[FI[hl]]; f.items.map((it,j)=>nodes[itemNode[f.id+':'+j]]).sort((a,b)=>b.item.w-a.item.w||a.zd-b.zd).forEach(n=>pri.push([n,'i'])); }
   const seen=new Set();
   for(const [n,k] of pri){ if(seen.has(n))continue; seen.add(n);
     if(k==='h'){ const on=!L&&n.g===hl; if(!on&&n.a<.42)continue; ctx.globalAlpha=on?1:Math.min(1,n.a+.1)*(L?.55:1); callout(n,n.facet.name.toUpperCase(),String(n.facet.items.length).padStart(2,'0'),on,false,false); }
@@ -698,13 +868,23 @@ function frame(now){
   ctx.globalAlpha=1;
   if(focusNode>=0){ const n=nodes[focusNode], rr=Math.max(9,n.r*n.s*1.3+6); ctx.strokeStyle='rgba(255,107,53,.95)'; ctx.lineWidth=1.2; ctx.beginPath(); ctx.arc(n.sx,n.sy,rr+3*Math.sin(now/300),0,7); ctx.stroke(); }
 
+  if(bursts.length){ ctx.globalCompositeOperation='lighter';
+    bursts=bursts.filter(b=>now-b.t<1500);
+    for(const b of bursts){ const n=nodes[b.i], age=(now-b.t)/1500, e=1-Math.pow(1-age,3), al=1-age;
+      ctx.strokeStyle=b.c; ctx.globalAlpha=al; ctx.lineWidth=1.4;
+      for(let k=0;k<3;k++){ ctx.beginPath(); ctx.arc(n.sx,n.sy,8+e*(70+k*28),0,7); ctx.stroke(); }
+      ctx.lineWidth=1; ctx.beginPath();
+      for(let k=0;k<18;k++){ const a=k/18*6.283+b.t, r1=10+e*40, r2=r1+10+e*36; ctx.moveTo(n.sx+Math.cos(a)*r1,n.sy+Math.sin(a)*r1); ctx.lineTo(n.sx+Math.cos(a)*r2,n.sy+Math.sin(a)*r2); }
+      ctx.stroke(); }
+    ctx.globalAlpha=1; ctx.globalCompositeOperation='source-over'; }
   let best=-1,bd=1e9;
   if(!dragging) for(let i=0;i<nodes.length;i++){ const n=nodes[i]; if(n.kind!=='item'&&n.kind!=='hub'&&n.kind!=='center')continue;
     const d=Math.hypot(n.sx-mx,n.sy-my),lim=Math.max(12,n.r*n.s*1.5+6); if(d<lim&&d<bd){bd=d;best=i;} }
   hover=best;
   if(best>=0){ const n=nodes[best], rr=Math.max(9,n.r*n.s*1.3+6);
     ctx.strokeStyle='rgba(232,226,212,.9)'; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(n.sx,n.sy,rr,0,7); ctx.stroke();
-    if(n.kind==='item'){ tipP.textContent=n.facet.name+' · '+n.facet.sub; tipT.textContent=n.item.t; tipM.textContent=n.item.d; tipH.textContent='Click to ask Morbius'; }
+    if(n.kind==='item'&&hunt){ tipP.textContent='Your guess?'; tipT.textContent='? ? ?'; tipM.textContent='No peeking. Click to lock it in.'; tipH.textContent=''; }
+    else if(n.kind==='item'){ tipP.textContent=n.facet.name+' · '+n.facet.sub; tipT.textContent=n.item.t; tipM.textContent=n.item.d; tipH.textContent='Click to ask Morbius'; }
     else if(n.kind==='hub'){ tipP.textContent='Constellation'; tipT.textContent=n.facet.name; tipM.textContent=n.facet.lede; tipH.textContent='Click to ask about it'; }
     else { tipP.textContent='The centre'; tipT.textContent='Mikey Leng'; tipM.textContent='Everything here orbits him.'; tipH.textContent='Click to start'; }
     let tx=n.sx+rr+24; if(tx+290>W) tx=n.sx-rr-24-290;
