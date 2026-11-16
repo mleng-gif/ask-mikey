@@ -48,7 +48,7 @@ h1 em{font-style:italic;font-weight:500;color:var(--or)}
 .room{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:0;margin-top:26px;border-bottom:1px solid var(--hair)}
 .chat{display:flex;flex-direction:column;height:clamp(640px,80vh,980px);padding-right:36px;border-right:1px solid var(--hair)}
 .chathead{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:12px;border-bottom:1px solid var(--hair)}
-.chathead .t{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+.chathead .t{white-space:nowrap;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
 .chathead .t b{color:var(--or);font-weight:400;margin-right:12px}
 .live{display:inline-flex;align-items:center;gap:8px}
 .live i{width:6px;height:6px;border-radius:50%;background:var(--dim2)}
@@ -56,16 +56,16 @@ h1 em{font-style:italic;font-weight:500;color:var(--or)}
 @keyframes breathe{50%{opacity:.35}}
 
 .log{flex:1;overflow-y:auto;padding:26px 6px 20px 0;scrollbar-width:thin;scrollbar-color:#2a2a3a transparent;scroll-behavior:smooth}
-.msg{margin-bottom:26px;animation:rise .5s ease both}
+.msg{margin-bottom:22px;animation:rise .5s ease both}
 @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.msg .who{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px}
+.msg .who{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px}
 .msg.m .who{color:var(--or)}
-.msg.m .txt{font-size:clamp(15px,1.05vw,17px);line-height:1.7;color:var(--ink);max-width:64ch}
+.msg.m .txt{font-size:14.5px;line-height:1.65;color:var(--ink);max-width:60ch}
 .msg.m .txt p+p{margin-top:.6em}
 .msg.m .txt a{color:var(--amber);text-decoration-thickness:1px;text-underline-offset:3px}
 .msg.u{padding-left:22%;text-align:right}
 .msg.u .who{color:var(--dim)}
-.msg.u .txt{font-size:13.5px;line-height:1.6;color:var(--ink2);display:inline-block;text-align:left;border-right:2px solid var(--hair2);padding-right:14px}
+.msg.u .txt{font-size:13px;line-height:1.6;color:var(--ink2);display:inline-block;text-align:left;border-right:2px solid var(--hair2);padding-right:12px}
 .caret{display:inline-block;width:.5em;height:1em;background:var(--or);vertical-align:-.12em;margin-left:2px;animation:blink 1s steps(2) infinite}
 @keyframes blink{50%{opacity:0}}
 .think{font-style:italic;color:var(--dim)}
@@ -77,7 +77,7 @@ h1 em{font-style:italic;font-weight:500;color:var(--or)}
 
 .hunch{margin-top:16px;border:1px dashed rgba(150,146,220,.45);padding:12px 14px 12px;max-width:40em;position:relative}
 .hunch .hl{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--lav)}
-.hunch .ht{font-style:italic;font-size:15px;line-height:1.6;color:var(--ink);margin-top:6px}
+.hunch .ht{font-style:italic;font-size:14px;line-height:1.6;color:var(--ink);margin-top:6px}
 .hunch .hb{display:flex;gap:8px;margin-top:11px;flex-wrap:wrap}
 .hunch .hb button{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);border:1px solid var(--hair2);padding:5px 10px;transition:all .2s}
 .hunch .hb button:hover{border-color:var(--lav);color:var(--ink)}
@@ -91,9 +91,9 @@ h1 em{font-style:italic;font-weight:500;color:var(--or)}
 .score b{font-weight:400;color:var(--ink2)}
 .game{margin-top:14px;max-width:40em}
 .game .gl{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-bottom:8px;display:flex;justify-content:space-between}
-.game .clue{font-style:italic;font-size:16.5px;line-height:1.55;color:var(--ink);border-left:2px solid var(--or);padding:4px 0 4px 14px}
+.game .clue{font-style:italic;font-size:15px;line-height:1.55;color:var(--ink);border-left:2px solid var(--or);padding:2px 0 2px 12px}
 .opts{display:flex;flex-direction:column;gap:8px}
-.opt{display:grid;grid-template-columns:24px 1fr auto;gap:10px;align-items:baseline;padding:11px 14px;border:1px solid var(--hair2);font-size:14px;line-height:1.55;color:var(--ink);transition:border-color .2s,background .2s,transform .15s}
+.opt{display:grid;grid-template-columns:24px 1fr auto;gap:10px;align-items:baseline;padding:10px 12px;border:1px solid var(--hair2);font-size:13px;line-height:1.55;color:var(--ink);transition:border-color .2s,background .2s,transform .15s}
 .opt:hover{border-color:var(--or);transform:translateX(3px)}
 .opt .l{font-weight:600;font-size:13px;color:var(--or)}
 .opt .v{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;opacity:0;transition:opacity .3s}
@@ -107,20 +107,21 @@ h1 em{font-style:italic;font-weight:500;color:var(--or)}
 .acts button:hover{color:var(--ink);border-bottom-color:var(--or)}
 .chip.play{border-color:rgba(255,107,53,.55);color:var(--ink)}
 .chip.play:hover{background:rgba(255,107,53,.1)}
-.morebtn{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);padding:2px 0;align-self:flex-start}
+.morebtn{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);padding:2px 0 2px 102px;align-self:flex-start}
 .morebtn:hover{color:var(--or)}
 .moreq{display:none;flex-direction:column;gap:9px}
 .moreq.open{display:flex}
 .ask{border-top:1px solid var(--hair);padding-top:14px}
-.chips{display:flex;flex-direction:column;gap:9px;margin-bottom:14px;max-height:178px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#2a2a3a transparent}
-.chips .grp{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
-.chips .grp .k{width:96px;flex:none;font-size:9.5px}
-.chip{font-size:12.5px;color:var(--ink2);border:1px solid var(--hair2);padding:6px 11px;border-radius:999px;transition:border-color .2s,color .2s,opacity .2s}
+.chips{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.chips .grp{display:grid;grid-template-columns:92px 1fr;align-items:start;gap:10px}
+.chips .grp .k{font-size:9.5px;padding-top:7px}
+.chips .cw{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;color:var(--ink2);border:1px solid var(--hair2);padding:5px 10px;border-radius:999px;transition:border-color .2s,color .2s,opacity .2s}
 .chip:hover{border-color:var(--or);color:var(--ink)}
 .chip.used{opacity:.38}
 .inrow{display:flex;align-items:flex-end;gap:16px;border-bottom:1px solid var(--hair2);padding-bottom:8px;transition:border-color .3s}
 .inrow:focus-within{border-bottom-color:var(--or)}
-#q{flex:1;background:none;border:0;outline:0;resize:none;color:var(--ink);font-family:var(--mono);font-style:italic;font-size:16px;line-height:1.5;max-height:120px}
+#q{flex:1;background:none;border:0;outline:0;resize:none;color:var(--ink);font-family:var(--mono);font-size:14.5px;line-height:1.5;max-height:120px}
 #q::placeholder{color:var(--dim2)}
 #send{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--or);padding:6px 0;white-space:nowrap}
 #send:disabled{color:var(--dim2);cursor:default}
@@ -138,7 +139,7 @@ h1 em{font-style:italic;font-weight:500;color:var(--or)}
 .legend button i{width:6px;height:6px;border-radius:50%}
 .legend button:hover,.legend button.on{color:var(--ink)}
 .legend button.on{border-bottom-color:var(--or)}
-.mapnote{position:absolute;right:20px;top:30px;z-index:2;max-width:230px;text-align:right;font-style:italic;font-size:12.5px;line-height:1.55;color:var(--ink2);pointer-events:none;transition:opacity .4s}
+.mapnote{position:absolute;right:20px;top:4px;z-index:2;text-align:right;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);pointer-events:none;transition:opacity .4s}
 .tip{position:absolute;z-index:4;pointer-events:none;background:rgba(6,8,16,.94);border:1px solid var(--hair2);border-left:2px solid var(--or);padding:11px 16px 12px;max-width:290px;opacity:0;transition:opacity .2s;backdrop-filter:blur(6px)}
 .tip .p{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
 .tip .t{font-weight:600;font-size:16px;line-height:1.25;margin-top:5px}
@@ -151,6 +152,7 @@ h1 em{font-style:italic;font-weight:500;color:var(--or)}
 .band p{font-size:13.5px;line-height:1.65;color:var(--ink2)}
 .band p i{color:var(--or);font-style:normal;margin:0 .2em}
 .band a{color:var(--amber);text-underline-offset:3px}
+@media (max-width:1500px){ .score{display:none} }
 @media (max-width:1300px){
   body{padding:32px 28px}
 }
@@ -163,7 +165,9 @@ h1 em{font-style:italic;font-weight:500;color:var(--or)}
   .mapnote{display:none}
   .chat{height:auto;min-height:70vh;padding-right:0;border-right:none;padding-top:18px}
   .log{max-height:62vh}
-  .chips .grp .k{width:100%}
+  .chips .grp{grid-template-columns:1fr;gap:6px}
+  .chips .grp .k{padding-top:0}
+  .morebtn{padding-left:0}
   .msg.u{padding-left:10%}
   .band{grid-template-columns:1fr;gap:20px}
   .score{display:none}
@@ -185,7 +189,7 @@ h1 em{font-style:italic;font-weight:500;color:var(--or)}
 
 <section class="room">
   <div class="chat">
-    <div class="chathead"><div class="t"><b>01</b>The conversation</div><div class="k"><span class="score" id="score" title="How Morbius's hunches about Mikey are scoring">Games <b id="sG">0</b>/<b id="sGT">0</b> · Hunches <b id="sY">0</b>✓ <b id="sC">0</b>~ <b id="sN">0</b>✗</span><span class="live" id="live"><i></i><span>Connecting</span></span></div></div>
+    <div class="chathead"><div class="t"><b>01</b>The conversation</div><div class="k"><span class="score" id="score" title="How Morbius's hunches about Mikey are scoring">Games <b id="sG">0</b>/<b id="sGT">0</b> · Hunches <b id="sY">0</b>✓ <b id="sC">0</b>~ <b id="sN">0</b>✗</span><span class="live" id="live" style="white-space:nowrap"><i></i><span>Connecting</span></span></div></div>
     <div class="log" id="log" aria-live="polite"></div>
     <div class="ask">
       <div class="chips" id="chips"></div>
@@ -198,7 +202,7 @@ h1 em{font-style:italic;font-weight:500;color:var(--or)}
   </div>
   <div class="map">
     <div class="maphead"><div class="t"><b>02</b>What I'm pointing at</div></div>
-    <div class="mapnote" id="mapnote">Everything I know about him, in eight constellations. Watch it light up as I talk.</div>
+    <div class="mapnote" id="mapnote">Hover to read · click to ask</div>
     <canvas id="stage"></canvas>
     <div class="legend" id="legend"></div>
     <div class="tip" id="tip"><div class="p"></div><div class="t"></div><div class="m"></div><div class="h"></div></div>
@@ -591,10 +595,10 @@ async function localAnswer(qx, a, refs){ if(busy) return; busy=true; addMsg('use
 const groups=[...new Set(SCRIPT.map(s=>s.g))];
 const chipFor=(s,i)=>`<button class="chip" data-i="${i}">${esc(s.q)}</button>`;
 $('chips').innerHTML=
- `<div class="grp"><span class="k" style="color:var(--or)">Play</span><button class="chip play" id="gTTH">Two truths &amp; a fib</button><button class="chip play" id="gHunt">Find it on the map</button><button class="chip play" id="gGuess">Take a guess about him</button></div>`+
- `<div class="grp"><span class="k">Start here</span>${SCRIPT.map((s,i)=>s.g==='Start here'?chipFor(s,i):'').join('')}</div>`+
+ `<div class="grp"><span class="k" style="color:var(--or)">Play</span><div class="cw"><button class="chip play" id="gTTH">Two truths &amp; a fib</button><button class="chip play" id="gHunt">Find it on the map</button><button class="chip play" id="gGuess">Take a guess</button></div></div>`+
+ `<div class="grp"><span class="k">Start here</span><div class="cw">${SCRIPT.map((s,i)=>s.g==='Start here'?chipFor(s,i):'').join('')}</div></div>`+
  `<button class="morebtn" id="moreBtn" type="button">More questions ↓</button>`+
- `<div class="moreq" id="moreQ">${groups.filter(g=>g!=='Start here').map(g=>`<div class="grp"><span class="k">${g}</span>${SCRIPT.map((s,i)=>s.g===g?chipFor(s,i):'').join('')}${g==='For fun'?'<button class="chip" id="gSurprise">What would surprise people about him?</button>':''}</div>`).join('')}</div>`;
+ `<div class="moreq" id="moreQ">${groups.filter(g=>g!=='Start here').map(g=>`<div class="grp"><span class="k">${g}</span><div class="cw">${SCRIPT.map((s,i)=>s.g===g?chipFor(s,i):'').join('')}${g==='For fun'?'<button class="chip" id="gSurprise">What would surprise people about him?</button>':''}</div></div>`).join('')}</div>`;
 $('gTTH').onclick=()=>startTTH(); $('gHunt').onclick=()=>startHunt(); $('gGuess').onclick=()=>guess('Take a guess about him.');
 $('gSurprise').onclick=()=>guess('What would surprise people about him?');
 $('moreBtn').onclick=()=>{ const o=$('moreQ').classList.toggle('open'); $('moreBtn').textContent=o?'Fewer questions ↑':'More questions ↓'; };
@@ -642,7 +646,7 @@ async function startTTH(){
 
 // — Find it on the map
 let hunt=null; const usedC=new Set();
-const mapnoteDefault='Everything I know about him, in eight constellations. Watch it light up as I talk.';
+const mapnoteDefault='Hover to read · click to ask';
 function setNote(t,show){ const m=$('mapnote'); m.textContent=t; m.style.opacity=show?1:0; }
 async function startHunt(){
   if(busy) return; busy=true; cancelHunt(true);
@@ -654,25 +658,25 @@ async function startHunt(){
   const g=document.createElement('div'); g.className='game';
   g.innerHTML=`<div class="gl"><span>Find it on the map</span><span>Click a point</span></div><div class="clue">${esc(c.c)}</div>`;
   d.appendChild(g); acts(d,[['Hint',huntHint],['Give up',huntGiveUp]]);
-  setNote('Find it. Click the point you think it is. Hover shows nothing. No cheating.',true);
+  setNote('Hunt mode · click your guess',true);
   busy=false;
 }
-function cancelHunt(silent){ if(!hunt) return; hunt=null; setNote(mapnoteDefault,!lit.length); }
+function cancelHunt(silent){ if(!hunt) return; hunt=null; setNote(mapnoteDefault,true); }
 async function huntHint(){ if(!hunt||busy) return; busy=true; const f=nodes[hunt.node].facet; setHL(f.id); hunt.hinted=true;
   await say(`Hint: it lives in ${f.name}. I've lit that constellation up for you.`);
   busy=false; acts(log.lastElementChild,[['Give up',huntGiveUp]]); }
 async function huntGiveUp(){ if(!hunt||busy) return; busy=true; const ti=hunt.node, n=nodes[ti]; hunt=null; tally(false);
-  setNote(mapnoteDefault,false); burst(ti,'#e8e2d4');
+  setNote(mapnoteDefault,true); burst(ti,'#e8e2d4');
   await say(`It was ${n.item.t}. ${n.item.d}`,[n.facet.id+':'+n.j]);
   busy=false; acts(log.lastElementChild,[['New clue →',startHunt],['Two truths & a fib →',startTTH]]); }
 async function checkHunt(i){
   if(!hunt||busy) return; busy=true; const n=nodes[i], t=nodes[hunt.node];
-  if(i===hunt.node){ hunt=null; tally(true); setNote(mapnoteDefault,false); burst(i,'#FF6B35');
+  if(i===hunt.node){ hunt=null; tally(true); setNote(mapnoteDefault,true); burst(i,'#FF6B35');
     userSays(`That one: ${n.item.t}.`);
     await say(`${pick(["Found it.","Yes. Nailed it.","That's the one.","Look at you."])} ${n.item.t}. ${n.item.d}`,[n.facet.id+':'+n.j]);
     busy=false; acts(log.lastElementChild,[['New clue →',startHunt],['Two truths & a fib →',startTTH]]); return; }
   hunt.tries++; burst(i,'#7a7688'); userSays(`This one? (${n.item.t})`);
-  if(hunt.tries>=3){ hunt=null; tally(false); setNote(mapnoteDefault,false); burst(nodes.indexOf(t),'#FF6B35');
+  if(hunt.tries>=3){ hunt=null; tally(false); setNote(mapnoteDefault,true); burst(nodes.indexOf(t),'#FF6B35');
     await say(`Nope, that's ${n.item.t}. Three strikes, so I'll tell you: it was ${t.item.t}. ${t.item.d}`,[t.facet.id+':'+t.j]);
     busy=false; acts(log.lastElementChild,[['New clue →',startHunt]]); return; }
   const near = n.facet===t.facet ? "Warm, though. Right constellation." : (hunt.hinted?'':` Hint: try ${t.facet.name}.`);
@@ -699,10 +703,7 @@ async function serverSample(msgs,{onText}={}){
 }
 // opener
 (async()=>{ const d=addMsg('assistant',''); await new Promise(r=>setTimeout(r,500)); await typeOut(d,OPENER,[]);
-  acts(d,[['Two truths & a fib →',startTTH],['Find it on the map →',startHunt]]);
-  setTimeout(async()=>{ if(history.length||busy||hunt) return; busy=true;
-    const n=await say(pick(["Still there? I promise I'm more fun than I look. Try the fib game. I'm a convincing liar, within reason.","Psst. Click any glowing point on the map and I'll tell you the story behind it.","No pressure. But I've been dying to tell someone about the Raga Breach."]));
-    busy=false; },24000); })();
+ })();
 // live capability
 (async()=>{
   if(window.claude&&window.claude.use){ try{ sample=(await window.claude.use('sample'))||null; }catch(e){ sample=null; } }
@@ -769,7 +770,7 @@ function setLit(refs){ lit=refs.map(r=>itemNode[r]).filter(n=>n!=null); litT=per
     const cnt={}; lit.forEach(i=>cnt[nodes[i].g]=(cnt[nodes[i].g]||0)+1); const g=Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a])[0];
     let cx=0,cz=0; lit.forEach(i=>{cx+=nodes[i].x;cz+=nodes[i].z;}); const h=nodes[FACETS[FI[g]].hub]; cx=cx/lit.length*.5+h.x*.5; cz=cz/lit.length*.5+h.z*.5;
     const tgt=Math.atan2(-cz,cx); let d=tgt-yawT; d=((d+Math.PI)%(2*Math.PI)+2*Math.PI)%(2*Math.PI)-Math.PI; yawT+=d; pitchT=.22; litHold=performance.now()+9000; }
-  $('mapnote').style.opacity=lit.length?0:1; if(lit.length) setHL(nodes[lit[0]].g); document.querySelectorAll('.legend button').forEach(b=>b.classList.remove('on')); }
+   if(lit.length) setHL(nodes[lit[0]].g); document.querySelectorAll('.legend button').forEach(b=>b.classList.remove('on')); }
 
 let yaw=1.6,yawT=1.6,pitch=.3,pitchT=.3,zoom=1,zoomT=1,zl=1,parX=0,parY=0,panX=0,panY=0;
 let dragging=false,moved=0,lx=0,ly=0,lastInput=-1e9,mx=-999,my=-999,hover=-1;
@@ -823,7 +824,7 @@ function frame(now){
   for(const e of E.ray){ const A=nodes[e[0]],B=nodes[e[1]], gr=ctx.createLinearGradient(A.sx,A.sy,B.sx,B.sy); gr.addColorStop(0,'rgba(255,170,110,.38)'); gr.addColorStop(1,'rgba(58,62,140,0)');
     ctx.strokeStyle=gr; ctx.lineWidth=.8; ctx.beginPath(); ctx.moveTo(A.sx,A.sy); ctx.lineTo(B.sx,B.sy); ctx.stroke(); }
   for(const e of E.spoke){ const A=nodes[e[0]],B=nodes[e[1]], on=L?lit.some(i=>nodes[i].g===B.g):B.g===hl, [r,g,b]=RGB[B.g], gr=ctx.createLinearGradient(A.sx,A.sy,B.sx,B.sy);
-    if(on){ gr.addColorStop(0,'rgba(255,236,210,.85)'); gr.addColorStop(1,'rgba(255,107,53,.7)'); ctx.lineWidth=1.4; } else { gr.addColorStop(0,'rgba(255,180,120,.35)'); gr.addColorStop(1,`rgba(${r},${g},${b},.06)`); ctx.lineWidth=.8; }
+    if(on){ gr.addColorStop(0,'rgba(255,236,210,.85)'); gr.addColorStop(1,'rgba(255,107,53,.7)'); ctx.lineWidth=1.4; } else { gr.addColorStop(0,'rgba(255,180,120,.2)'); gr.addColorStop(1,`rgba(${r},${g},${b},.04)`); ctx.lineWidth=.7; }
     ctx.strokeStyle=gr; ctx.beginPath(); ctx.moveTo(A.sx,A.sy); ctx.lineTo(B.sx,B.sy); ctx.stroke(); }
   const C=nodes[center], cr=12*C.s*1.35, talking=busy?1+.12*Math.sin(now/180):1;
   const og=ctx.createRadialGradient(C.sx,C.sy,0,C.sx,C.sy,cr*6*talking); og.addColorStop(0,'rgba(255,150,80,.5)'); og.addColorStop(.35,'rgba(255,107,53,.14)'); og.addColorStop(1,'rgba(58,62,140,0)');
@@ -835,14 +836,13 @@ function frame(now){
   ctx.fillStyle='#f3e6cf'; ctx.beginPath(); ctx.arc(C.sx,C.sy,cr,0,7); ctx.fill();
   ctx.strokeStyle='rgba(255,107,53,.9)'; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(C.sx,C.sy,cr+5,0,7); ctx.stroke();
   ctx.fillStyle='#1a0d05'; ctx.font=`600 ${Math.round(cr*1.25)}px ${MONO}`; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('M',C.sx-1,C.sy+1);
-  ctx.font=`500 14px ${MONO}`; ctx.fillStyle='#e8e2d4'; ctx.fillText('Mikey',C.sx,C.sy+cr+22);
-  ctx.font=`9.5px ${MONO}`; ctx.fillStyle='#7a7688'; LS('2px'); ctx.fillText('BED-STUY · BROOKLYN',C.sx,C.sy+cr+40); LS('0px');
+  ctx.font=`500 12px ${MONO}`; ctx.fillStyle='#e8e2d4'; ctx.fillText('Mikey',C.sx,C.sy+cr+22);
   for(const f of FACETS){ const n=nodes[f.hub], on=!L&&f.id===hl, rad=Math.max(3,n.r*n.s*1.25);
     ctx.globalAlpha=on?1:Math.max(.3,n.a)*(L?.5:1); ctx.strokeStyle=on?'#FF6B35':'rgba(232,226,212,.7)'; ctx.lineWidth=1;
     ctx.beginPath(); ctx.arc(n.sx,n.sy,rad+3,0,7); ctx.stroke(); ctx.fillStyle=on?'#FF6B35':'#e8e2d4'; ctx.beginPath(); ctx.arc(n.sx,n.sy,1.8,0,7); ctx.fill(); }
   ctx.globalAlpha=1;
 
-  const placed=[{x:C.sx-80,y:C.sy+cr+6,w:160,h:42}]; ctx.textBaseline='alphabetic';
+  const placed=[{x:C.sx-40,y:C.sy+cr+6,w:80,h:24}]; ctx.textBaseline='alphabetic';
   function callout(n,txt,cnt,strong,accent,small){
     const right=n.sx>=C.sx,dx=right?1:-1; ctx.font=`${small?9.5:10.5}px ${MONO}`; LS(small?'1.2px':'1.8px'); const tw=ctx.measureText(txt).width;
     let cw=0; if(cnt){ ctx.font=`600 12px ${MONO}`; LS('0px'); cw=ctx.measureText(cnt).width+8; }
@@ -857,7 +857,6 @@ function frame(now){
   if(focusNode>=0) pri.push([nodes[focusNode],'t']);
   if(L) lit.forEach(i=>pri.push([nodes[i],'t']));
   FACETS.slice().sort((a,b)=>(b.id===hl)-(a.id===hl)||nodes[a.hub].zd-nodes[b.hub].zd).forEach(f=>pri.push([nodes[f.hub],'h']));
-  if(!L&&!hunt){ const f=FACETS[FI[hl]]; f.items.map((it,j)=>nodes[itemNode[f.id+':'+j]]).sort((a,b)=>b.item.w-a.item.w||a.zd-b.zd).forEach(n=>pri.push([n,'i'])); }
   const seen=new Set();
   for(const [n,k] of pri){ if(seen.has(n))continue; seen.add(n);
     if(k==='h'){ const on=!L&&n.g===hl; if(!on&&n.a<.42)continue; ctx.globalAlpha=on?1:Math.min(1,n.a+.1)*(L?.55:1); callout(n,n.facet.name.toUpperCase(),String(n.facet.items.length).padStart(2,'0'),on,false,false); }
