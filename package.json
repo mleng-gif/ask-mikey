@@ -1,0 +1,6 @@
+{
+  "name": "ask-mikey",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" }
+}
