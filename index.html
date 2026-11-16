@@ -575,9 +575,9 @@ async function ask(text, scripted){
     }catch(e){
       const msg = e&&e.code==='rate_limited' ? "Give me a second. Too many questions at once, even for me. Try again in a moment, or pick one of the questions below."
         : e&&e.code==='not_granted' ? "Live chat is switched off right now, but the questions below all work."
-        : "Something hiccuped on my end. Try again, or pick one of the questions below.";
+        : "My live line's down for the moment, so I'm running on ready-made answers. The games, the questions below and the map all still work.";
       t.innerHTML=fmt(msg); history.pop();
-      if(e&&e.code==='not_granted'){ sample=null; setLive(false); }
+      if(e&&(e.code==='not_granted'||e.code==='upstream')){ sample=null; setLive(false); }
     }
   } else {
     // offline: answer from the facts directly
