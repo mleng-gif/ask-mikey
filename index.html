@@ -837,12 +837,12 @@ function frame(now){
   h2x.clearRect(0,0,h2c.width,h2c.height); h2x.filter='saturate(.55)'; h2x.drawImage(h1c,0,0,h2c.width,h2c.height); h2x.filter='none';
   ctx.globalCompositeOperation='screen'; ctx.globalAlpha=.7; ctx.drawImage(h2c,0,0,W,H); ctx.globalAlpha=1; ctx.globalCompositeOperation='source-over';
   // the centre of the universe: Mikey's script mark
-  const lw=Math.max(84,cr*6.4), lh=lw*LOGO_AR; logoW=lw;
+  const lw=Math.max(26,cr*1.92), lh=lw*LOGO_AR; logoW=lw;
   const shade=ctx.createRadialGradient(C.sx,C.sy,0,C.sx,C.sy,lw*.62);
   shade.addColorStop(0,'rgba(6,8,16,.72)'); shade.addColorStop(.7,'rgba(6,8,16,.35)'); shade.addColorStop(1,'rgba(6,8,16,0)');
   ctx.fillStyle=shade; ctx.beginPath(); ctx.arc(C.sx,C.sy,lw*.62,0,7); ctx.fill();
   ctx.strokeStyle='rgba(255,107,53,.55)'; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(C.sx,C.sy,lw*.58,0,7); ctx.stroke();
-  if(LOGO.complete&&LOGO.naturalWidth){ ctx.save(); ctx.shadowColor='rgba(255,150,80,.55)'; ctx.shadowBlur=18; ctx.drawImage(LOGO,C.sx-lw/2,C.sy-lh/2,lw,lh); ctx.restore(); }
+  if(LOGO.complete&&LOGO.naturalWidth){ ctx.save(); ctx.shadowColor='rgba(255,150,80,.55)'; ctx.shadowBlur=8; ctx.drawImage(LOGO,C.sx-lw/2,C.sy-lh/2,lw,lh); ctx.restore(); }
   for(const f of FACETS){ const n=nodes[f.hub], on=!L&&f.id===hl, rad=Math.max(3,n.r*n.s*1.25);
     ctx.globalAlpha=on?1:Math.max(.3,n.a)*(L?.5:1); ctx.strokeStyle=on?'#FF6B35':'rgba(232,226,212,.7)'; ctx.lineWidth=1;
     ctx.beginPath(); ctx.arc(n.sx,n.sy,rad+3,0,7); ctx.stroke(); ctx.fillStyle=on?'#FF6B35':'#e8e2d4'; ctx.beginPath(); ctx.arc(n.sx,n.sy,1.8,0,7); ctx.fill(); }
@@ -882,7 +882,7 @@ function frame(now){
     ctx.globalAlpha=1; ctx.globalCompositeOperation='source-over'; }
   let best=-1,bd=1e9;
   if(!dragging) for(let i=0;i<nodes.length;i++){ const n=nodes[i]; if(n.kind!=='item'&&n.kind!=='hub'&&n.kind!=='center')continue;
-    const d=Math.hypot(n.sx-mx,n.sy-my),lim=n.kind==='center'?logoW*.5:Math.max(12,n.r*n.s*1.5+6); if(d<lim&&d<bd){bd=d;best=i;} }
+    const d=Math.hypot(n.sx-mx,n.sy-my),lim=n.kind==='center'?Math.max(16,logoW*.55):Math.max(12,n.r*n.s*1.5+6); if(d<lim&&d<bd){bd=d;best=i;} }
   hover=best;
   if(best>=0){ const n=nodes[best], rr=Math.max(9,n.r*n.s*1.3+6);
     ctx.strokeStyle='rgba(232,226,212,.9)'; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(n.sx,n.sy,rr,0,7); ctx.stroke();
